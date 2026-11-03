@@ -39,19 +39,19 @@
     "access": "public"
   },
   "scripts": {
-    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "prepare": "lefthook install",
     "dev": "node src/cli.ts",
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "test": "vitest",
+    "test:coverage": "vitest --run --config vitest.config.coverage.ts",
+    "typecheck": "tsc",
+    "lint": "oxlint",
+    "lint:knip": "knip",
+    "lint:publish": "attw --pack . --profile node16 --ignore-rules cjs-resolves-to-esm && publint --strict",
     "format": "oxfmt",
     "format:check": "oxfmt --check",
-    "lint": "oxlint",
-    "typecheck": "tsc",
-    "test": "vitest",
-    "release": "pnpm run build && changeset publish",
     "check-all": "pnpm run build && pnpm run test:coverage && pnpm run format:check && pnpm run lint && pnpm run lint:knip && pnpm run lint:publish && pnpm run typecheck",
-    "prepare": "lefthook install",
-    "test:coverage": "vitest --run --config vitest.config.coverage.ts",
-    "lint:knip": "knip",
-    "lint:publish": "attw --pack . --profile node16 --ignore-rules cjs-resolves-to-esm && publint --strict"
+    "release": "pnpm run build && changeset publish"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.5",
