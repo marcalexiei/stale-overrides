@@ -122,8 +122,10 @@ dist
 # TernJS port file
 .tern-port
 
-#VSCode code
-.vscode
+# IDE
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
@@ -135,6 +137,5 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-packages/oxlint-config/generated-rules.json
 
 /tests/fixtures/**/node_modules

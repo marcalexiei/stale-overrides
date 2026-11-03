@@ -1,6 +1,6 @@
 /** A TOML reader for what `bunfig.toml` holds: tables, strings, numbers, booleans, arrays and inline tables. */
 
-export class TomlError extends Error {
+class TomlError extends Error {
   override name = 'TomlError';
 }
 

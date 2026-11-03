@@ -47,7 +47,7 @@ export interface Report {
   readonly exitCode: 0 | 1 | 2;
 }
 
-export function exitCodeOf(report: Omit<Report, 'exitCode'>): 0 | 1 | 2 {
+function exitCodeOf(report: Omit<Report, 'exitCode'>): 0 | 1 | 2 {
   if (report.overrides.some((entry) => entry.verdict.status === 'error')) {
     return 2;
   }

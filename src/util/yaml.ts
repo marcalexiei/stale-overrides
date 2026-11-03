@@ -3,7 +3,7 @@
  * plain scalars, block scalars and comments. Anchors, aliases, tags and complex keys are refused.
  */
 
-export class YamlError extends Error {
+class YamlError extends Error {
   override name = 'YamlError';
 }
 

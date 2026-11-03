@@ -4,7 +4,7 @@ import type { ChainLink, Override, OverrideValue, PackageManager, Selector } fro
 import { isRange } from './util/semver.ts';
 
 /** Splits `name@range` at the `@` that is not a scope prefix. */
-export function parseSelector(text: string): Selector {
+function parseSelector(text: string): Selector {
   const at = text.indexOf('@', 1);
   if (at === -1) {
     return { name: text, range: null };
@@ -51,7 +51,7 @@ function indirection(
   return null;
 }
 
-export function parseValue(raw: string, target: string, context: ReadContext): OverrideValue {
+function parseValue(raw: string, target: string, context: ReadContext): OverrideValue {
   let spec = raw;
   for (let hop = 0; hop < 4; hop++) {
     if (spec === '-' && context.allowRemoval) {

@@ -16,7 +16,7 @@ export class RegistryError extends Error {
   override name = 'RegistryError';
 }
 
-export interface VersionInfo {
+interface VersionInfo {
   /** `dependencies`, then `optionalDependencies`, then `peerDependencies`, first one wins. */
   readonly deps: ReadonlyMap<string, string>;
   readonly deprecated: boolean;
@@ -51,7 +51,7 @@ function parseDate(value: unknown): Date | null {
   return Number.isNaN(date.getTime()) ? null : date;
 }
 
-export function parsePackument(name: string, raw: unknown): Packument {
+function parsePackument(name: string, raw: unknown): Packument {
   if (!isObject(raw) || !isObject(raw['versions'])) {
     throw new RegistryError(`the registry sent no versions for ${name}`);
   }

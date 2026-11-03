@@ -18,7 +18,7 @@ defaults:
     shell: bash
 
 env:
-  HUSKY: 0
+  LEFTHOOK: 0
 
 jobs:
   release:

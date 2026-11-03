@@ -7,11 +7,11 @@ import { isObject } from '../project.ts';
 
 const DEFAULT_REGISTRY = 'https://registry.npmjs.org';
 
-export class ConfigError extends Error {
+class ConfigError extends Error {
   override name = 'ConfigError';
 }
 
-export interface RegistryTarget {
+interface RegistryTarget {
   readonly url: string;
   readonly authorization: string | null;
 }
@@ -48,7 +48,7 @@ function expandEnv(value: string, env: Env): string {
   });
 }
 
-export function parseNpmrc(text: string, env: Env): Map<string, string> {
+function parseNpmrc(text: string, env: Env): Map<string, string> {
   const entries = new Map<string, string>();
   for (const line of text.split(/\r?\n/)) {
     const trimmed = line.trim();

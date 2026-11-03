@@ -10,6 +10,8 @@
 pnpm run check-all
 ```
 
+`pnpm install` installs a lefthook `pre-commit` hook that formats, lints and tests.
+
 Tests run offline: `tests/helpers/registry.ts` serves the packages in `tests/helpers/packages.ts`
 from a local server, so no fixture depends on what npm publishes next.
 

@@ -1,7 +1,7 @@
 import { createServer } from 'node:http';
 import type { AddressInfo } from 'node:net';
 
-export interface FakeVersion {
+interface FakeVersion {
   readonly deps?: Record<string, string>;
   readonly time: string;
   readonly deprecated?: string;

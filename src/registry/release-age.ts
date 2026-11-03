@@ -38,7 +38,7 @@ function patternMatcher(pattern: string): (name: string, version: string) => boo
 }
 
 /** Yarn durations are minutes when bare, or a number with a `s`, `m`, `h`, `d` or `w` unit. */
-export function parseDurationMinutes(value: unknown): number {
+function parseDurationMinutes(value: unknown): number {
   if (typeof value === 'number') {
     return value;
   }

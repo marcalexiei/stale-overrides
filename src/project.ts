@@ -23,7 +23,7 @@ export interface Project {
   readonly catalogs: ReadonlyMap<string, Readonly<Record<string, string>>>;
 }
 
-export class ProjectError extends Error {
+class ProjectError extends Error {
   override name = 'ProjectError';
 }
 

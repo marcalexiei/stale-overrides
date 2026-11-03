@@ -20,7 +20,7 @@ defaults:
     shell: bash
 
 env:
-  HUSKY: 0
+  LEFTHOOK: 0
   CI: true
 
 jobs:
@@ -39,6 +39,10 @@ jobs:
         node:
           - 24
           - 26
+        # coverage on one leg: what the tests reach does not vary by Node version
+        include:
+          - node: 26
+            coverage: true
 
     steps:
       - name: Checkout
@@ -55,7 +59,9 @@ jobs:
         run: pnpm run build
 
       - name: Run test
-        run: pnpm run test
+        run: pnpm run "$TESTS"
+        env:
+          TESTS: ${{ matrix.coverage && 'test:coverage' || 'test' }}
 
   code-checks:
     name: Code checks
@@ -83,6 +89,15 @@ jobs:
 
       - name: Lint
         run: pnpm run lint
+
+      - name: Lint (knip)
+        run: pnpm run lint:knip
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Lint (packaging and published types)
+        run: pnpm run lint:publish
 
   github-actions-audit:
     name: GitHub Actions audit

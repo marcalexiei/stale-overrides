@@ -10,7 +10,7 @@ export interface Intent {
   readonly ceiling?: true;
 }
 
-export class IntentError extends Error {
+class IntentError extends Error {
   override name = 'IntentError';
 }
 
