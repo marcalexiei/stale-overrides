@@ -1,0 +1,29 @@
+{
+  "lockfileVersion": 1,
+  "workspaces": {
+    "": {
+      "name": "fixture-bun",
+      "dependencies": {
+        "legacy-fetch": "1.0.0",
+        "modern": "1.0.0",
+        "stuck": "1.0.0",
+      },
+    },
+  },
+  "overrides": {
+    "child": "^2.0.0",
+    "gone": "1.0.0",
+    "old-fetch": "npm:new-fetch@^1.0.0",
+  },
+  "packages": {
+    "child": ["child@2.0.0", "", {}, "sha512-x"],
+
+    "legacy-fetch": ["legacy-fetch@1.0.0", "", { "dependencies": { "old-fetch": "^3.0.0" } }, "sha512-x"],
+
+    "modern": ["modern@1.0.0", "", { "dependencies": { "child": "^2.0.0" } }, "sha512-x"],
+
+    "old-fetch": ["new-fetch@1.0.0", "", {}, "sha512-x"],
+
+    "stuck": ["stuck@1.0.0", "", { "dependencies": { "child": "^1.0.0" } }, "sha512-x"],
+  }
+}

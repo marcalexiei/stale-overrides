@@ -1,0 +1,17 @@
+{
+  "name": "fixture-yarn-berry",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "yarn@4.10.3",
+  "dependencies": {
+    "legacy-fetch": "1.0.0",
+    "modern": "1.0.0",
+    "stuck": "1.0.0"
+  },
+  "resolutions": {
+    "child": "npm:^2.0.0",
+    "modern/child": "npm:^2.0.0",
+    "gone": "1.0.0",
+    "old-fetch": "npm:new-fetch@^1.0.0"
+  }
+}

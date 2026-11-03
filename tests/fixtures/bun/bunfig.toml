@@ -1,0 +1,3 @@
+[install]
+# one day, in seconds
+minimumReleaseAge = 86400

@@ -1,0 +1,19 @@
+{
+  "name": "fixture-npm",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "fixable": "^1.0.0",
+    "legacy-fetch": "1.0.0",
+    "modern": "1.0.0",
+    "stuck": "1.0.0"
+  },
+  "overrides": {
+    "child": "^2.0.0",
+    "modern": {
+      "child": "^2.0.0"
+    },
+    "gone": "1.0.0",
+    "old-fetch": "npm:new-fetch@^1.0.0"
+  }
+}

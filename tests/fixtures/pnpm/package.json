@@ -1,0 +1,15 @@
+{
+  "name": "fixture-pnpm",
+  "private": true,
+  "packageManager": "pnpm@12.14.0",
+  "dependencies": {
+    "legacy-fetch": "1.0.0",
+    "modern": "1.0.0",
+    "tiny": "1.0.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "gone": "1.0.0"
+    }
+  }
+}

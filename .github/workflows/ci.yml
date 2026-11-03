@@ -1,0 +1,136 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions: {}
+
+concurrency:
+  # head_ref is empty on push, so each commit on main gets its own group and is never cancelled
+  group: '${{ github.workflow }}-${{ github.head_ref || github.sha }}'
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  HUSKY: 0
+  CI: true
+
+jobs:
+  test:
+    name: Test (Node ${{ matrix.node }})
+
+    permissions:
+      contents: read
+
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+
+    strategy:
+      fail-fast: true
+      matrix:
+        node:
+          - 24
+          - 26
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install Dependencies
+        uses: marcalexiei/github-actions/setup-node-and-pnpm@92c64c084d3479cff756151cb8163d03608f2acd # v2.4.2
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Run build
+        run: pnpm run build
+
+      - name: Run test
+        run: pnpm run test
+
+  code-checks:
+    name: Code checks
+
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install Dependencies
+        uses: marcalexiei/github-actions/setup-node-and-pnpm@92c64c084d3479cff756151cb8163d03608f2acd # v2.4.2
+
+      - name: Typecheck
+        run: pnpm run typecheck
+
+      - name: Format
+        run: pnpm run format:check
+
+      - name: Lint
+        run: pnpm run lint
+
+  github-actions-audit:
+    name: GitHub Actions audit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read # required to check out the repository
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 2 # the parent the changed-paths step diffs against
+      - name: Check changed paths
+        id: changes
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        # a pull request checks out its merge commit, whose first parent is the base branch
+        run: |
+          if [ "${EVENT_NAME}" != pull_request ] || [ -n "$(git diff --name-only HEAD^1 HEAD -- .github)" ]; then
+            echo "github=true" >> "${GITHUB_OUTPUT}"
+          fi
+      - name: Run zizmor
+        if: ${{ steps.changes.outputs.github == 'true' }}
+        uses: zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482 # v0.6.4
+        with:
+          advanced-security: false
+          annotations: true
+      - name: Run jactionlint
+        # still runs when zizmor fails, so one run reports both
+        if: ${{ !cancelled() && steps.changes.outputs.github == 'true' }}
+        uses: jdx/jactionlint@a0bb9f012b6b5760c17c9ccd040001d08002a10e # v2.1.0
+        with:
+          online: strict # a lookup it cannot make fails the job instead of being skipped
+
+  ci-ok:
+    name: CI OK
+    if: ${{ always() }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 1
+    needs:
+      - test
+      - code-checks
+      - github-actions-audit
+    permissions:
+      actions: read # required to list the run's jobs
+      contents: read # required to read the workflow file
+    steps:
+      - name: Check needed jobs
+        uses: marcalexiei/github-actions/check-needs@4a51d6dfcaac0c263c6f2efd97249eafe0076721 # v2.5.0
+        with:
+          needs: ${{ toJSON(needs) }}

@@ -1,0 +1,20 @@
+packages:
+  - packages/*
+
+catalog:
+  child: ^2.0.0
+
+catalogs:
+  legacy:
+    child: 1.2.0
+
+overrides:
+  # stuck still asks for 1
+  child: 'catalog:'
+  modern>child: ^2.0.0
+  'child@<2': catalog:legacy
+  'modern>child@^1': 1.2.0
+  old-fetch: npm:new-fetch@^1.0.0
+  tiny>child: '-'
+
+minimumReleaseAge: 1440

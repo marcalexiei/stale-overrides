@@ -1,0 +1,68 @@
+{
+  "name": "stale-overrides",
+  "version": "0.0.0",
+  "description": "Tell when a dependency override is no longer needed, for npm, Yarn, Bun and pnpm",
+  "keywords": [
+    "bun",
+    "cli",
+    "npm",
+    "overrides",
+    "pnpm",
+    "resolutions",
+    "yarn"
+  ],
+  "homepage": "https://github.com/marcalexiei/stale-overrides#readme",
+  "bugs": {
+    "url": "https://github.com/marcalexiei/stale-overrides/issues"
+  },
+  "license": "MIT",
+  "author": "Marco Pasqualetti @marcalexiei",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcalexiei/stale-overrides.git"
+  },
+  "bin": {
+    "stale-overrides": "./bin.js"
+  },
+  "files": [
+    "bin.js",
+    "dist"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "dev": "node src/cli.ts",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "lint": "oxlint",
+    "typecheck": "tsc",
+    "test": "vitest",
+    "release": "pnpm run build && changeset publish",
+    "check-all": "pnpm run build && pnpm run test --run && pnpm run format:check && pnpm run lint && pnpm run typecheck"
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "1.0.1",
+    "@changesets/cli": "3.0.3",
+    "@marcalexiei/oxfmt-config": "2.0.1",
+    "@marcalexiei/oxlint-config": "1.9.0",
+    "@types/node": "26.6.6",
+    "oxfmt": "0.75.0",
+    "oxlint": "1.90.0",
+    "oxlint-tsgolint": "7.0.2005",
+    "typescript": "7.0.2",
+    "vitest": "5.0.5"
+  },
+  "engines": {
+    "node": "^24 || >=26"
+  },
+  "packageManager": "pnpm@12.14.0+sha512.c18ba6d87993d3d164cb5e8948f32b2c06ee854487e06cd8d86781342fb3e5bb4634367034711e86802baa9c37bea906ce1929ad08d70884c97d801df13389a6"
+}

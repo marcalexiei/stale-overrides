@@ -1,0 +1,31 @@
+version: 2
+
+updates:
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'monthly'
+    cooldown:
+      default-days: 7
+
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'monthly'
+    open-pull-requests-limit: 10
+    ignore:
+      # kept on the major of the Node version in .nvmrc
+      - dependency-name: '@types/node'
+        update-types: ['version-update:semver-major']
+    groups:
+      oxc:
+        patterns:
+          - 'oxlint'
+          - 'oxlint-*'
+          - 'oxfmt'
+          - '@marcalexiei/ox*'
+      changesets:
+        patterns:
+          - '@changesets/*'
+    cooldown:
+      default-days: 7

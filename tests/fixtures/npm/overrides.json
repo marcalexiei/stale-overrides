@@ -1,0 +1,6 @@
+{
+  "child": { "why": "stuck still asks for child 1, which has the prototype pollution" },
+  "modern>child": { "why": "copied from an old incident" },
+  "gone": { "why": "a cap nothing needs any more" },
+  "old-fetch": { "why": "old-fetch pulls in a deprecated shim" }
+}

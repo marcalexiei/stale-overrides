@@ -1,0 +1,16 @@
+{
+  "name": "fixture-yarn-classic",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "legacy-fetch": "1.0.0",
+    "modern": "1.0.0",
+    "stuck": "1.0.0"
+  },
+  "resolutions": {
+    "**/child": "^2.0.0",
+    "modern/child": "^2.0.0",
+    "gone": "1.0.0",
+    "old-fetch": "npm:new-fetch@^1.0.0"
+  }
+}

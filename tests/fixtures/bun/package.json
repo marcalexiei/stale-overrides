@@ -1,0 +1,18 @@
+{
+  "name": "fixture-bun",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "legacy-fetch": "1.0.0",
+    "modern": "1.0.0",
+    "stuck": "1.0.0"
+  },
+  "overrides": {
+    "child": "^2.0.0",
+    "old-fetch": "npm:new-fetch@^1.0.0"
+  },
+  "resolutions": {
+    "modern/child": "^2.0.0",
+    "gone": "1.0.0"
+  }
+}

@@ -1,0 +1,113 @@
+---
+lockfileVersion: '9.0'
+
+importers:
+
+  .:
+    configDependencies: {}
+    packageManagerDependencies:
+      pnpm:
+        specifier: 12.14.0
+        version: 12.14.0
+
+packages:
+
+  pnpm@12.14.0:
+    resolution: {integrity: sha512-x}
+    hasBin: true
+
+snapshots:
+
+  pnpm@12.14.0: {}
+
+---
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+catalogs:
+  default:
+    child:
+      specifier: ^2.0.0
+      version: 2.0.0
+
+overrides:
+  child: ^2.0.0
+  modern>child: ^2.0.0
+  child@<2: 1.2.0
+  modern>child@^1: 1.2.0
+  old-fetch: npm:new-fetch@^1.0.0
+  tiny>child: '-'
+  gone: 1.0.0
+
+importers:
+
+  .:
+    dependencies:
+      legacy-fetch:
+        specifier: 1.0.0
+        version: 1.0.0
+      modern:
+        specifier: 1.0.0
+        version: 1.0.0
+      tiny:
+        specifier: 1.0.0
+        version: 1.0.0
+
+  packages/app:
+    dependencies:
+      fixable:
+        specifier: ^1.0.0
+        version: 1.0.0
+      stuck:
+        specifier: 1.0.0
+        version: 1.0.0
+
+packages:
+
+  child@2.0.0:
+    resolution: {integrity: sha512-x}
+
+  fixable@1.0.0:
+    resolution: {integrity: sha512-x}
+
+  legacy-fetch@1.0.0:
+    resolution: {integrity: sha512-x}
+
+  modern@1.0.0:
+    resolution: {integrity: sha512-x}
+
+  new-fetch@1.0.0:
+    resolution: {integrity: sha512-x}
+
+  stuck@1.0.0:
+    resolution: {integrity: sha512-x}
+
+  tiny@1.0.0:
+    resolution: {integrity: sha512-x}
+
+snapshots:
+
+  child@2.0.0: {}
+
+  fixable@1.0.0:
+    dependencies:
+      child: 2.0.0
+
+  legacy-fetch@1.0.0:
+    dependencies:
+      old-fetch: new-fetch@1.0.0
+
+  modern@1.0.0:
+    dependencies:
+      child: 2.0.0
+
+  new-fetch@1.0.0: {}
+
+  stuck@1.0.0:
+    dependencies:
+      child: 2.0.0
+
+  tiny@1.0.0: {}
