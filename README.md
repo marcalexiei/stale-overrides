@@ -1,5 +1,10 @@
 # stale-overrides
 
+> [!NOTE]
+> Built with AI: the code, tests and documentation were written with
+> [Claude Code](https://claude.com/claude-code). Check a PRUNE before acting on it, for example
+> with [`--verify`](#--verify).
+
 Tells you when a dependency override is no longer needed, for npm, Yarn (classic and berry),
 Bun and pnpm.
 
