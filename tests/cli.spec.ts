@@ -29,12 +29,17 @@ interface Run {
   readonly stderr: string;
 }
 
+// CI sets NPM_CONFIG_USERCONFIG, which would shadow the fixture's lowercase key.
+const inheritedEnv = Object.fromEntries(
+  Object.entries(process.env).filter(([name]) => !/^npm_config_/i.test(name)),
+);
+
 async function cli(args: ReadonlyArray<string>): Promise<Run> {
   return new Promise((resolve) => {
     execFile(
       process.execPath,
       [CLI, ...args],
-      { env: { ...process.env, ...fixtureEnv(registry.url), NO_COLOR: '1' } },
+      { env: { ...inheritedEnv, ...fixtureEnv(registry.url), NO_COLOR: '1' } },
       (error, stdout, stderr) => {
         resolve({ code: error === null ? 0 : Number(error.code), stdout, stderr });
       },

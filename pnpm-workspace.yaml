@@ -18,3 +18,6 @@ trustPolicy: no-downgrade
 # Fail on unmet peers and on a Node version outside `engines`, instead of warning
 strictPeerDependencies: true
 engineStrict: true
+
+# Keep the lockfile deduped on every install, without a separate `pnpm dedupe`
+autoDedupe: true
