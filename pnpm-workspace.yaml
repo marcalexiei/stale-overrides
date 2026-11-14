@@ -19,4 +19,5 @@ trustPolicy: no-downgrade
 strictPeerDependencies: true
 engineStrict: true
 
+# Keep the lockfile deduped on every install, without a separate `pnpm dedupe`
 autoDedupe: true
