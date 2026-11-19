@@ -1,6 +1,6 @@
 {
   "name": "stale-overrides",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Tell when a dependency override is no longer needed, for npm, Yarn, Bun and pnpm",
   "keywords": [
     "bun",
