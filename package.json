@@ -50,7 +50,7 @@
     "lint:publish": "attw --pack . --profile node16 --ignore-rules cjs-resolves-to-esm && publint --strict",
     "format": "oxfmt",
     "format:check": "oxfmt --check",
-    "check-all": "pnpm run build && pnpm run test:coverage && pnpm run format:check && pnpm run lint && pnpm run lint:knip && pnpm run lint:publish && pnpm run typecheck",
+    "validate": "pnpm run build && pnpm run test:coverage && pnpm run format:check && pnpm run lint && pnpm run lint:knip && pnpm run lint:publish && pnpm run typecheck",
     "release": "pnpm run build && changeset publish"
   },
   "devDependencies": {

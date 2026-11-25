@@ -8,7 +8,7 @@ that makes it untrue.
 - **Don't commit, push, open a PR or comment on one unless asked.**
 - **A change to what ships (`src/`, `bin.js`, `package.json`) carries a changeset, unasked.** See
   [Changesets](#changesets).
-- **Run `pnpm check-all` before handing work over**: it is every check CI runs.
+- **Run `pnpm validate` before handing work over**: it is every check CI runs.
 - **No runtime dependencies.** The semver, YAML, TOML, JSONC and yarn lockfile readers are
   handwritten in `src/util/` and `src/lockfile/`; extend them rather than adding a package.
 
@@ -43,10 +43,10 @@ pnpm lint:publish     # attw + publint over the packed tarball; needs `pnpm buil
 pnpm format           # oxfmt (`format:check` in CI)
 pnpm build            # tsc into dist/
 pnpm dev <dir>        # run the CLI from source
-pnpm check-all        # every check CI runs, in one command
+pnpm validate         # every check CI runs, in one command
 ```
 
-- **Keep `check-all` in step with `.github/workflows/ci.yml`.**
+- **Keep `validate` in step with `.github/workflows/ci.yml`.**
 
 ## Verdicts
 
