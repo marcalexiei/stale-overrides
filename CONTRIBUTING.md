@@ -7,7 +7,7 @@
 ## Checks
 
 ```shell
-pnpm run check-all
+pnpm run validate
 ```
 
 `pnpm install` installs a lefthook `pre-commit` hook that formats, lints and tests.
